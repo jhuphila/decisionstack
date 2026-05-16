@@ -264,7 +264,9 @@ ngrok http 5000
 ```
 
 You'll see:
+```bash
 Forwarding    https://abc123.ngrok-free.app -> http://localhost:5000
+```
 Copy that `https://` URL — you'll need it for the Lovable dashboard setup
 in Step 8.
 
