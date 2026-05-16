@@ -235,21 +235,43 @@ Scheduler running — proactive scan every 24 hours
 
 ---
 
-## Step 7 — ngrok
+## Step 7 — ngrok Setup
 
-The operator dashboard needs a public URL to reach your local Flask server. ngrok creates that tunnel.
+ngrok creates a public tunnel to your local Flask server so the Lovable
+dashboard can reach it from the internet.
+
+### Install ngrok
+1. Go to [ngrok.com/download](https://ngrok.com/download) and create a free account
+2. Download the version for your OS
+3. For Windows: extract the `.exe` file somewhere simple like `C:\ngrok\`
+
+### Authenticate ngrok (one time only)
+1. After signing up, go to [dashboard.ngrok.com](https://dashboard.ngrok.com)
+2. Copy your authtoken from the dashboard
+3. Run this command (replace with your actual token):
 
 ```bash
-# In a separate terminal
+ngrok config add-authtoken YOUR_TOKEN_HERE
+```
+
+This only needs to be done once per machine.
+
+### Run ngrok
+In a separate terminal from your bot, run:
+
+```bash
 ngrok http 5000
 ```
 
-You'll see something like:
-```
+You'll see:
 Forwarding    https://abc123.ngrok-free.app -> http://localhost:5000
-```
+Copy that `https://` URL — you'll need it for the Lovable dashboard setup
+in Step 8.
 
-**Important — URL changes:** On the free ngrok tier, this URL changes every time you restart ngrok. Each new session you'll need to update the URL in the Lovable dashboard (see Step 8). If you want a permanent URL, ngrok paid plans offer reserved static domains.
+**Note:** On the free tier, this URL changes every time you restart ngrok.
+Each new session, update the Approve button URL in your Lovable project
+(Step 8 covers this). Ngrok paid plans offer a reserved static domain
+that never changes.
 
 ---
 
